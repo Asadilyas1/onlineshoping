@@ -1,0 +1,60 @@
+﻿@model IEnumerable<shoping.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+
+<h1>
+    Customer account details
+</h1>
+<table class="table table-active table-bordered table-responsive " >
+    <tr>
+        <th>
+            Customer name
+        </th>
+        <th>
+          address details
+        </th>
+        <th>
+           Phone #
+        </th>
+        <th>
+           Emails adress
+        </th>
+        <th>
+          passwords
+        </th>
+        
+        <th>Take action</th>
+    </tr>
+
+@foreach (var item in Model.Where(x=>x.Account_type=="customer")) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_password)
+        </td>
+        
+        <td>
+
+            <a  class="btn btn-danger fa fa-trash"  href="@Url.Action("Delete","Accounts" , new { id=item.Account_id })">Delete this account </a>
+
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<shoping.Models.Account>
+@using shoping.Models
+
+@{
+    ViewBag.Title = "Customer_Edit_index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer_Edit_index</h2>
+
+
+<table class="table ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_type)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_adress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_type)
+                </td>
+                <td>
+                   <a href="@Url.Action("Edit_customer","Home" , new { id = item.Account_id })" >Edit account</a>
+                  
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Account_id })
+                </td>
+            </tr>
+        }
+    
+
+</table>

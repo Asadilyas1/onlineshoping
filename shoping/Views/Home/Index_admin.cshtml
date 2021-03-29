@@ -1,0 +1,67 @@
+﻿@using shoping.Models
+@{
+
+    Model1 db = new Model1();
+
+    ViewBag.Title = "Index_Admin";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="panel panel-back noti-box">
+            <span class="icon-box bg-color-red set-icon">
+                <i class="fa fa-user"></i>
+            </span>
+            <div class="text-box">
+                <p class="main-text">@db.Accounts.Where(x => x.Account_type == "Admin").Count()</p>
+                <p class="text-muted">Admin</p>
+            </div>
+            <div class="text-box">
+                <p class="main-text"><h4>Customer account: <br />
+                    @db.Accounts.Where(x => x.Account_type == "Customer").Count() </h4></p>
+                <p class="text-muted"></p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="panel panel-back noti-box">
+            <span class="icon-box bg-color-green set-icon">
+                <i class="fa fa-bars"></i>
+            </span>
+            <div class="text-box">
+                <p class="main-text">@db.Products.Count() Product </p>
+                <p class="text-muted">Sale</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="panel panel-back noti-box">
+            <span class="icon-box bg-color-blue set-icon">
+                <i class="fa fa-money"></i>
+            </span>
+            <div class="text-box">
+                <p class="main-text">@db.Order_details.Where(x=>x.Order.Order_type=="Sale").Sum(x=>x.Od_Sale_price * x.Od_quantity *-1)</p>
+                <p class="text-muted">Online earning</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-6">
+        <div class="panel panel-back noti-box">
+            <span class="icon-box bg-color-brown set-icon">
+                <i class="fa fa-rocket"></i>
+            </span>
+            <div class="text-box">
+                <p class="main-text">@db.Orders.Where(x=>x.Order_type=="Sale").Count()</p>
+                <p class="text-muted">Sale Order</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /. ROW  -->
+<hr />
+

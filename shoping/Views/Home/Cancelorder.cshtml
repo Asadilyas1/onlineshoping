@@ -1,0 +1,64 @@
+﻿@using shoping.Models
+@{
+
+    Model1 db = new Model1();
+    Account a = (Account)Session["user"];
+
+    int no = 0;
+    ViewBag.Title = "Cancel Order_history";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Cancel order Report</h2> </center>
+
+
+<table class="table table-bordered table-active ">
+
+    <tr>
+        <th>Sr no</th>
+        <th>Order id</th>
+        <th>Customer Name</th>
+        <th>Customer adress</th>
+        <th>Customer Emails</th>
+        <th>Customer NO</th>
+     
+        <th>Order date time</th>
+        <th>Order paid status</th>
+        <th>Order status</th>
+        <th>Action</th>
+
+    </tr>
+
+
+
+    @foreach (var v in db.Orders.Where(x=>x.Order_type =="Sale" & x.Order_delivery_status == "Canceled") )
+    {
+        no++;
+
+        if (v.Account_Fid == a.Account_id)
+        {
+<tr>
+    <td align="center">@no</td>
+    <td align="center">Order_@v.Order_id</td>
+    <td>@v.Order_Name</td>
+    <td>@v.Order_adress</td>
+    <td>@v.Order_Email</td>
+    <td>@v.Oder_phone_No</td>
+
+    <td>@DateTime.Parse(v.Oder_date_time.ToString()).ToLongDateString()</td>
+    <td>@v.Order_status</td>
+    <td>@v.Order_delivery_status</td>
+    <td><a href="@Url.Action("Active", "Home", new { id = v.Order_id })" class="btn btn-success ">Active again </a></td>
+
+    <td><a href="@Url.Action("invoice", "Home", new { id = v.Order_id })" class="btn btn-success ">view report </a></td>
+
+
+</tr>
+        }
+
+    }
+
+
+
+</table>
+

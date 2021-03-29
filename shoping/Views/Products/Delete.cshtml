@@ -1,0 +1,81 @@
+﻿@model shoping.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sub_category.Sub_category_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sub_category.Sub_category_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Pic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Pic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Prachase_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Prachase_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Sale_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Sale_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

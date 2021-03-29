@@ -1,0 +1,67 @@
+﻿@model shoping.Models.Account
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account_type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Account_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

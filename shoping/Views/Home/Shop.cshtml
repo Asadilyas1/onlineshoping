@@ -1,0 +1,151 @@
+﻿@using shoping.Models
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Model1 db = new Model1();
+    List<Product> pro = new List<Product>();
+    if(TempData["searchdata"] !=null)
+    {
+        pro = (List<Product>) TempData["searchdata"];
+
+    }
+    else
+    {
+        pro = db.Products.ToList();
+
+    }
+
+}
+
+<h2>Shop</h2>
+
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2>Shop Product</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="#">Home</a>
+                    <a href="@Url.Action("Shop","Home")">Shop</a>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+<!--================Category Product Area =================-->
+<section class="cat_product_area section_gap">
+    <div class="container">
+
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9">
+                <div class="product_top_bar">
+                    <div class="left_dorp">
+                        @using (Html.BeginForm("Shop", "Home", FormMethod.Post))
+                        {
+
+
+                            <label>Search by name</label>
+                            <input type="text" name="s" />
+                            <input type="submit" value="Search" />
+                        }
+
+
+                    </div>
+                </div>
+
+
+                <div class="latest_product_inner">
+                    <div class="single-product">
+                        <div class="product-img">
+
+                            <div class="row">
+                                @foreach (var x in pro)
+                                {
+
+                                    if (TempData["catid"] == null || x.Sub_category.Category.Category_id == (int)TempData["catid"])
+                                    {
+
+                                        <div class=" table-bordered  col-lg-4 col-md-6">
+                                            <div class="single-product">
+
+                                                <div class="product-img">
+                                                    <h3>  @x.Sub_category.Sub_category_Name </h3>
+                                                    <br />
+                                                    <img class="card-img"
+                                                         src="@Url.Content(x.Product_Pic)"
+                                                         alt="" style="height:280px ; width:255px" />
+                                                    <div class="p_icon">
+                                                        <a href="#" data-toggle="tooltip" title="@x.Order_details.Sum(y => y.Od_quantity)">
+                                                            <i class="ti-eye"></i>
+                                                        </a>
+                                                        <a href="#">
+                                                            <i class="ti-heart"></i>
+                                                        </a>
+                                                        @if (x.Order_details.Sum(n => n.Od_quantity) > 0)
+                                                        {
+                                                            <a href="@Url.Action("AddtoCart", "Home", new { id = x.Product_id })">
+                                                                <i class="ti-shopping-cart"></i>
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="product-btm">
+
+                                                    <h4>@x.Product_description</h4>
+
+                                                    <div class="mt-3">
+                                                        <span class="mr-4">RS:  @x.Product_Sale_price</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="left_sidebar_area">
+                    <aside class="left_widgets p_filter_widgets">
+                        <div class="l_w_title">
+                            <h3>Category type</h3>
+                        </div>
+                        <div class="widgets_inner">
+                            <ul class="list">
+                                @foreach (var c in db.Categories)
+                                {
+
+                                    <li> <a href="@Url.Action("Shop","Home" , new { id= c.Category_id})">@c.Category_Name </a></li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </aside>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+</section>
+<!--================End Category Product Area =================-->

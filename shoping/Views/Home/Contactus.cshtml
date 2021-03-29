@@ -1,0 +1,43 @@
+﻿@model IEnumerable<shoping.Models.Contact_us>
+@{
+    int no = 0;
+
+
+    ViewBag.Title = "Contactus";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+<center>
+    <h2>Contactus Report</h2>
+</center>
+
+<br />
+<br />
+<table class="table table-bordered table-active table-responsive">
+    <tr>
+      
+       <th>SR no</th>
+        <th>Customer Name</th>
+        <th>Customer Emails</th>
+        <th>Customer Message</th>
+        <th>Date</th>
+        
+
+    </tr>
+
+
+    @foreach (var c in Model)
+    {
+        no++;
+        <tr>
+            <td>  @no</td>
+            <td>@c.Name</td>
+            <td>@c.Email</td>
+            <td>@c.Message</td>
+            <td>@DateTime.Parse(c.Date_time.ToString()).ToLongDateString()</td>
+
+        </tr>
+
+
+    }
+
+</table>

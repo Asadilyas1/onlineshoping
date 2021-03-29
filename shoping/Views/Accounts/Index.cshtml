@@ -1,0 +1,74 @@
+﻿@model IEnumerable<shoping.Models.Account>
+@using shoping.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<center>
+
+    <a class="btn btn-primary" href="@Url.Action("Create","Accounts")">Create new account </a>
+    <br />
+    <br />
+</center>
+<table class="table table-active table-bordered table-responsive " >
+    <tr>
+        <th>
+           Admin name
+        </th>
+        <th>
+           Adress
+        </th>
+        <th>
+           Phone #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account_Email)
+        </th>
+        <th>
+           password
+        </th>
+        <th>
+           account
+        </th>
+        <th align="center">Action </th>
+    </tr>
+
+@foreach (var item in Model.Where(x=>x.Account_type=="admin"))
+{
+    Account a = (Account)Session["admin"];
+    if (a.Account_id == item.Account_id)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_type)
+        </td>
+        <td>
+            <a class="btn btn-primary" href="@Url.Action("Edit","Accounts" ,new { id=item.Account_id})">Edit </a>
+            <a class="btn btn-success" href="@Url.Action("Details","Accounts" ,new { id=item.Account_id})">Details </a>
+            <a class="btn btn-danger" href="@Url.Action("Delete","Accounts" ,new { id=item.Account_id})">Delete </a>
+
+            
+        </td>
+    </tr>
+    }
+}
+
+</table>

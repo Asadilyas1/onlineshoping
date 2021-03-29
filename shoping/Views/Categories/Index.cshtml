@@ -1,0 +1,38 @@
+﻿@model IEnumerable<shoping.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<p>
+    <a  class="btn btn-danger"  href="@Url.Action("Create","Categories")"> Create </a>
+   
+</p>
+<table class="table table-bordered table-active">
+    <tr>
+        <th>
+         Category Name
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category_Name)
+        </td>
+        <td>
+            <a class="btn btn-primary glyphicon glyphicon-edit" href="@Url.Action("Edit","Categories",new { id=item.Category_id })">Edit</a>
+            <a class="btn btn-success glyphicon glyphicon-book" href="@Url.Action("Details","Categories",new { id=item.Category_id })">Details</a>
+            <a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete","Categories",new { id=item.Category_id })">Delete</a>
+
+
+
+
+        </td>
+    </tr>
+}
+
+</table>

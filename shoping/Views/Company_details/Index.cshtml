@@ -1,0 +1,58 @@
+﻿@model IEnumerable<shoping.Models.Company_details>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-active">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company_logo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company_email)
+        </td>
+        <td>
+           <img src="@Url.Content(item.Company_logo) " height="100px" width="100px" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Company_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Company_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Company_id })
+        </td>
+    </tr>
+}
+
+</table>

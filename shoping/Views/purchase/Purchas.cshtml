@@ -1,0 +1,107 @@
+﻿@using shoping.Models
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+    Model1 db = new Model1();
+}
+
+<h2>Shop</h2>
+
+
+
+<div class="col-lg-3">
+    <div class="right_sidebar_area">
+
+        <div class="l_w_title">
+            <h3>Select Categories</h3>
+        </div>
+        <div class="row">
+
+            @foreach (var c in db.Categories)
+            {
+
+                <a href="#" class="btn btn-primary">@c.Category_Name </a>
+            }
+
+
+            <br />
+            <br />
+        </div>
+
+    </div>
+</div>
+
+
+
+<section class="cat_product_area section_gap">
+   
+        <div class="row flex-row-reverse">
+            <div class="col-lg-11 col-md-5 " >
+               
+
+                <div class="latest_product_inner">
+                            <div class="single-product">
+                                <div class="product-img">
+
+                                    <div class="row">
+                                        @foreach (var x in db.Products)
+                                        {
+                                        <div class="table-bordered  col-lg-4 col-md-4 col-sm-3">
+                                            <div class="single-product">
+                                                <center>
+                                                    <h3>@x.Sub_category.Sub_category_Name</h3>
+
+                                                    <div class="product-img">
+                                                        <img class="card-img"
+                                                             src="@Url.Content(x.Product_Pic)"
+                                                             alt="" style="height:280px ; width:255px" />
+
+                                                    </div>
+
+                                                    <div class="product-btm">
+
+                                                        <h4>@x.Product_description</h4>
+
+                                                        <div class="mt-3">
+                                                            <span class="mr-4">RS:  @x.Product_Prachase_price</span>
+                                                            <br />
+
+                                                        </div>
+
+
+                                                        <br />
+                                                        <div class="btn btn-danger">
+
+                                                            <a href="@Url.Action("AddtoCart","purchase",new { id =x.Product_id}) " class="color-1">
+
+                                                                Add to stock
+                                                            </a>
+                                                        </div>
+                                                      
+                                                    </div>
+                                                    <br />
+                                                </center>
+
+                                            </div>
+                                            
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                        
+                                        
+                                    </div>
+                                        
+                    
+
+                       
+
+                   
+                </div>
+            </div>
+
+            
+        </div>
+ 
+</section>
+<!--================End Category Product Area =================-->
